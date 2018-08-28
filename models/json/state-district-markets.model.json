@@ -1,0 +1,36 @@
+[
+  {
+    "stateName": "Maharashtra",
+    "stateId": "MH",
+    "districts": [
+      {
+        "districtName": "Nashik",
+        "districtId": "13",
+        "markets": [
+          {
+            "marketName": "Lasalgaon",
+            "marketId": "13"
+          },
+          {
+            "marketName": "Niphad",
+            "marketId": "21"
+          }
+        ]
+      },
+      {
+        "districtName": "Pune",
+        "districtId": "15",
+        "markets": [
+          {
+            "marketName": "Chinchwad",
+            "marketId": "14"
+          },
+          {
+            "marketName": "Pimpri",
+            "marketId": "34"
+          }
+        ]
+      }
+    ]
+  }
+]
