@@ -1,9 +1,15 @@
 var express = require("express");
 var router = express.Router();
 const scrapper = require("../helpers/scrapper");
+const test = require("../helpers/test");
 
 router.get("/", (req, res, next) => {
   res.send("Testing...");
+});
+
+router.get("/test", async (req, res, next) => {
+  await test.testingFunction();
+  res.send("Testing disconnect...");
 });
 
 router.get("/pull-data", async (req, res, next) => {

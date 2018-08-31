@@ -1,4 +1,5 @@
 const extractedFunctions = require("./extractedFunctions");
+const puppeteer = require("puppeteer");
 
 const scrapeStatesDistrictsAndMarketsData = async () => {
   try {
@@ -326,6 +327,28 @@ const scrapeCommodityArrival = async (
 };
 
 const scrapeEggPrice = async () => {};
+
+const testingDisconnection = async () => {
+  const originalBrowser = await puppeteer.launch({ headless: false });
+  const browserWSEndpoint = originalBrowser.wsEndpoint();
+  const page = await originalBrowser.newPage();
+  await page.goto("https://google.com");
+  originalBrowser.disconnect();
+  const browser = await puppeteer.connect({ browserWSEndpoint });
+  const pages = await browser.pages();
+  const newPage = await browser.newPage();
+  // console.log("Page", pages[0]._frameManager._mainFrame._navigationURL);
+  // const restoredPage = pages.find(page => {
+  //   if (page.mainFrame().url() === "https://google.com") {
+  //     return page._frameManager._mainFrame._navigationURL;
+  //   }
+  // });
+  console.log("Connected again..." + pages[1].url());
+  await newPage.goto(pages[1]._frameManager._mainFrame._navigationURL);
+  // expect(utils.dumpFrames(restoredPage.mainFrame())).toBeGolden('reconnect-nested-frames.txt');
+  // expect(await restoredPage.evaluate(() => 7 * 8)).toBe(56);
+  await browser.close();
+};
 
 module.exports = {
   scrapeStatesDistrictsAndMarketsData,
